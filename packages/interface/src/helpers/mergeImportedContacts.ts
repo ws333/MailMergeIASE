@@ -65,25 +65,27 @@ export function mergeImportedContacts(
             importContactsStats.contactsProcessed++;
             continue;
         } else {
-            // Contact from import not in active contacts and not in IndexedDB deleted contacts, add to deleted list
-            currentDeleted.push({
-                uid: importContact.uid,
-                na: "",
-                i: "",
-                s: "",
-                n: "",
-                e: "",
-                ud: "",
-                cb1: "",
-                cb2: "",
-                sd: importContact.sd,
-                sc: importContact.sc,
-                cf1: importContact.cf1,
-                cf2: importContact.cf2,
-                dd: exportDate,
-            });
+            // Contact from import not in active contacts and not in IndexedDB deleted contacts, add to deleted list if sc > 0
+            if (importContact.sc > 0) {
+                currentDeleted.push({
+                    uid: importContact.uid,
+                    na: "",
+                    i: "",
+                    s: "",
+                    n: "",
+                    e: "",
+                    ud: "",
+                    cb1: "",
+                    cb2: "",
+                    sd: importContact.sd,
+                    sc: importContact.sc,
+                    cf1: importContact.cf1,
+                    cf2: importContact.cf2,
+                    dd: exportDate,
+                });
+                importContactsStats.contactsDeleted++;
+            }
             importContactsStats.contactsProcessed++;
-            importContactsStats.contactsDeleted++;
         }
     }
 
