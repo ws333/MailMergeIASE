@@ -15,9 +15,9 @@ import { getLogsToDisplay, logSendingMessage } from "../helpers/sendingLog";
 import { checkForDangelingSession, clearSessionState, updateSessionState } from "../helpers/sessionState";
 import { validateEmail } from "../helpers/validateEmail";
 import { waitRandomSeconds } from "../helpers/waitRandomSeconds";
-import ButtonCancel from "./ButtonCancel";
 import ButtonEndSession from "./ButtonEndSession";
 import ButtonSendEmails from "./ButtonSendEmails";
+import ButtonStopSending from "./ButtonStopSending";
 import Dialog from "./Dialog";
 import EmailOptions from "./EmailOptions";
 import EmailPreview from "./EmailPreview";
@@ -267,7 +267,7 @@ const EmailSender = () => {
                     )}
 
                     {isSending && (
-                        <ButtonCancel
+                        <ButtonStopSending
                             aborted={controller.current.signal.aborted}
                             checkInProgress={checkInProgress.current}
                             disabled={cancelButtonDisabled}

@@ -9,8 +9,8 @@ type Props = {
     toSendCount: number;
 };
 
-function ButtonCancel({ aborted, checkInProgress, disabled, onClick, toSendCount }: Props) {
-    const buttonText = aborted || checkInProgress || !toSendCount ? "Please wait..." : "Cancel";
+function ButtonStopSending({ aborted, checkInProgress, disabled, onClick, toSendCount }: Props) {
+    const buttonText = aborted || checkInProgress || !toSendCount ? "Please wait..." : "Stop sending";
     return (
         <Button isDisabled={disabled} onClick={onClick}>
             {buttonText}
@@ -18,4 +18,4 @@ function ButtonCancel({ aborted, checkInProgress, disabled, onClick, toSendCount
     );
 }
 
-export default ButtonCancel;
+export default ButtonStopSending;

@@ -22,7 +22,7 @@ function ButtonSendEmails({ checkInProgress, disabled, endSession, leftToSendCou
               : !leftToSendCount
                 ? "Selected contacts already processed"
                 : !emailsSent
-                  ? "Send Emails"
+                  ? "Send emails"
                   : "Continue";
     return (
         <Button className="session_buttons" isDisabled={disabled} onClick={onClick}>
