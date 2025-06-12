@@ -14,7 +14,7 @@ export const subjects: Subjects = {
         "Åpenhet og offentliggjøring av UAP informasjon",
         "Støtt frigjøringen av UAP-informasjon",
         "Offentliggjøring av informasjon angående UAP",
-        "Krav om offentliggjøring av UAP-informasjon",
+        "Forespørsel om offentliggjøring av UAP-informasjon",
         "Tilpasset Emne",
     ],
 };
