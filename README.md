@@ -2,13 +2,13 @@
 
 <br/>
 
-Interstellar Alliance Social Experiment Step 3 is a Thunderbird add-on to send emails with a preset content to specified recipient (the inital version only supports one recipient).
+Interstellar Alliance Social Experiment Step 3 is a Thunderbird add-on to send the Step 3 letter by email to a predefined online contact list.
 
 Based on Thunderbird add-on [Mail Merge P](https://github.com/siefkenj/MailMergeP)
 
 ## Building
 
-Build the entire extension, first run
+To build the entire extension, first run
 
 ```sh
 npm install
@@ -28,7 +28,7 @@ npm run build-addon
 npm run package-addon
 ```
 
-The extension will be located in the current directory and called `iases3@iase.one.xpi`.
+The extension will be located in the current directory with filename `iases3@iase.one.xpi`.
 
 ## Development
 
@@ -76,7 +76,7 @@ cd packages/interface
 npx vite build --watch
 ```
 
-The UI is developed using React and Redux with the helper EasyPeasy.
+The UI is developed using React and the Redux based state manager EasyPeasy.
 
 ### Packaging
 
