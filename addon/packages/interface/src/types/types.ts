@@ -1,6 +1,12 @@
 import type { ChangeEvent, FocusEvent, JSX } from "react";
 import { Email, Prefs } from "./modelTypes";
 
+export type ProjectEnvProps = {
+    environment: ProjectEnvironment;
+    sendEmailFn: (email: Email) => Promise<string> | Promise<void>;
+    InfoComponent?: React.ReactElement;
+};
+
 export type EmailComponentProps = {
     name: string;
 };

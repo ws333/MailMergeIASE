@@ -31,8 +31,8 @@ function getBuildTimeProjectType(): ProjectEnvironment | undefined {
 }
 
 /**
- * Detect which project environment the shared code is running in
- * Should work reliably in both development and production builds
+ * - Detect which project environment the shared code is running in (addon or webapp)
+ * - Should work reliably in both development and production builds
  */
 export function getProjectEnvironment(): ProjectEnvironment {
     // 0. Check for build-time configuration first (most reliable)

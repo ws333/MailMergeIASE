@@ -8,7 +8,7 @@ import Loading from '../../../../addon/packages/interface/src/components/Loading
 import { setDevModeIfLocalhost } from '../../../../addon/packages/interface/src/helpers/getSetDevMode';
 import { model } from '../../../../addon/packages/interface/src/model';
 import { PersistentStateKey, usePersistentState } from '../../../../addon/packages/interface/src/state/persistentState';
-import App from './App';
+import ProjectEnvironment from './ProjectEnvironment';
 
 const store = createStore(model, { disableImmer: true });
 
@@ -19,7 +19,6 @@ export function Root() {
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const [theme, setTheme] = usePersistentState<ThemePreference>(PersistentStateKey.ThemePreference, 'system');
-  console.log('*Debug* -> Root -> theme:', theme);
 
   return (
     <StoreProvider store={store}>
@@ -28,7 +27,7 @@ export function Root() {
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Suspense fallback={<Loading />}>
             <QueryClientProvider client={queryClient}>
-              <App />
+              <ProjectEnvironment />
             </QueryClientProvider>
           </Suspense>
         </ErrorBoundary>

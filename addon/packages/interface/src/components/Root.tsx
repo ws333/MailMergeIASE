@@ -6,9 +6,9 @@ import { DarkLightThemeProvider, GlobalStyle, ThemePreference } from "ui-kit";
 import { setDevModeIfLocalhost } from "../helpers/getSetDevMode";
 import { model } from "../model";
 import { PersistentStateKey, usePersistentState } from "../state/persistentState";
-import App from "./App";
 import ErrorFallback from "./ErrorFallback";
 import Loading from "./Loading";
+import ProjectEnvironment from "./ProjectEnvironment";
 
 const store = createStore(model, { disableImmer: true });
 
@@ -26,7 +26,7 @@ export function Root() {
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                     <Suspense fallback={<Loading />}>
                         <QueryClientProvider client={queryClient}>
-                            <App />
+                            <ProjectEnvironment />
                         </QueryClientProvider>
                     </Suspense>
                 </ErrorBoundary>

@@ -27,6 +27,7 @@ const StyledModal = styled(Modal)`
     overflow-y: auto;
     overflow: hidden auto;
     width: 92%;
+    max-width: 800px;
 `;
 
 function Dialog({

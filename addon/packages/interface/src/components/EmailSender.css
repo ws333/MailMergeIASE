@@ -8,13 +8,14 @@ p {
 
 /* Root level CSS variables for consistent sizing */
 :root {
-    --container-add-on-max-width: 50rem;
+    --container-max-width: 50rem;
 }
 
 /* Main container for email sender component */
 .container_email_sender {
-    margin: auto;
-    max-width: var(--container-add-on-max-width);
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--container-max-width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,11 +34,14 @@ p {
 .container_options {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .container_buttons {
     margin: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .session_buttons {
@@ -65,7 +69,7 @@ p {
 }
 
 .container_email_preview {
-    width: 100%;
+    max-width: var(--container-max-width);
 }
 
 .email_preview_content {
@@ -84,7 +88,7 @@ p {
 }
 
 .container_emails_sent_log {
-    font-size: x-small;
+    font-size: small;
     max-height: 12.5rem;
     overflow-y: scroll;
     padding: 1rem;
@@ -110,7 +114,9 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50vw;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container_message > p {

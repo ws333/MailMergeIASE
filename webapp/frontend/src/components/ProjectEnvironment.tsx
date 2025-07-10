@@ -1,8 +1,8 @@
 import { useMsal } from '@azure/msal-react';
 import { Route, Routes } from 'react-router-dom';
 import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
-import EmailSender from '../../../../addon/packages/interface/src/components/EmailSender';
-import { getProjectEnvironment } from '../../../../addon/packages/interface/src/helpers/projectEnvironment';
+import App from '../../../../addon/packages/interface/src/components/App';
+import { getProjectEnvironment } from '../../../../addon/packages/interface/src/helpers/getProjectEnvironment';
 import { loginRequest } from '../auth/authConfig';
 import { sendEmailMSAL } from '../auth/sendMailMSAL';
 import EmailSenderInfo from './EmailSenderInfo';
@@ -10,9 +10,8 @@ import LogIn from './LogIn';
 import Page404 from './Page404';
 import ProtectedRoute from './ProtectedRoute';
 
-function App() {
-  const environment = getProjectEnvironment(); // Check if running as addon or webapp
-  console.log('*Debug* -> App -> environment:', environment);
+function ProjectEnvironment() {
+  const environment = getProjectEnvironment();
 
   const { instance, accounts } = useMsal();
   const { scopes } = loginRequest;
@@ -28,7 +27,7 @@ function App() {
           <Route path="step3">
             <Route
               index
-              element={<EmailSender environment={environment} sendEmailFn={sendMailFn} InfoComponent={InfoComponent} />}
+              element={<App environment={environment} sendEmailFn={sendMailFn} InfoComponent={InfoComponent} />}
             />
           </Route>
         </Route>
@@ -38,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default ProjectEnvironment;

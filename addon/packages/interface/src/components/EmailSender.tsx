@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { Email } from "../types/modelTypes";
-import type { MessagePayload, ProjectEnvironment } from "../types/types";
+import type { MessagePayload, ProjectEnvProps } from "../types/types";
 import type { ContactI3C, LogMessageOptions } from "../types/typesI3C";
 import {
     ERROR_ENVIRONMENT_UNKNOWN,
@@ -32,13 +32,7 @@ import SendingLog from "./SendingLog";
 import SendingProgress from "./SendingProgress";
 import "./EmailSender.css";
 
-type Props = {
-    environment: ProjectEnvironment;
-    sendEmailFn: (email: Email) => Promise<string> | Promise<void>;
-    InfoComponent?: React.ReactElement;
-};
-
-function EmailSender({ environment, sendEmailFn, InfoComponent }: Props) {
+function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProps) {
     if (environment === "unknown") throw new Error(ERROR_ENVIRONMENT_UNKNOWN);
     const [message, setMessage] = useState<string>(zeroWidtSpace); // zeroWidtSpace used to keep styling consistent
     const [errorMessage, setErrorMessage] = useState<string>();

@@ -1,5 +1,16 @@
 import { useMsal } from '@azure/msal-react';
+import { CSSProperties } from 'react';
+import HeaderWithIFO from '../../../../addon/packages/interface/src/components/HeaderWithIFO';
 import { loginRequest } from '../auth/authConfig';
+
+const divStyles: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100vh',
+  width: '100%',
+};
 
 const LogIn = () => {
   const { instance } = useMsal();
@@ -13,8 +24,8 @@ const LogIn = () => {
   };
 
   return (
-    <div>
-      <h1>Interstellar Alliance Social Experiment Step 3</h1>
+    <div style={divStyles}>
+      <HeaderWithIFO />
       <button onClick={onClickLogin}>Login with Microsoft</button>
     </div>
   );
