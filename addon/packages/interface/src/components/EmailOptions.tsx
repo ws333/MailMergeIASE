@@ -1,5 +1,5 @@
-import { Tooltip } from "radzionkit/ui/tooltips/Tooltip";
 import { FocusEvent, useEffect, useRef, useState } from "react";
+import { Tooltip } from "ui-kit";
 import { maxCountOptions, minSendingDelay } from "../constants/constants";
 import { LanguageOption, subjects } from "../constants/emailTemplates";
 import { useStoreActions, useStoreState } from "../hooks/storeHooks";

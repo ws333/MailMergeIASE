@@ -1,9 +1,10 @@
 packages:
+  - addon
   - addon/*
   - webapp/*
 
 ignoredBuiltDependencies:
-  - radzionkit
+  - ui-kit
 
 onlyBuiltDependencies:
   - esbuild

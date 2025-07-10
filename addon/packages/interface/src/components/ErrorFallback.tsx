@@ -1,6 +1,6 @@
-import { Button, Text } from "radzionkit";
 import { CSSProperties } from "react";
 import { FallbackProps } from "react-error-boundary";
+import { Button, Text } from "ui-kit";
 import HeaderWithIFO from "./HeaderWithIFO";
 
 const divStyles: CSSProperties = {

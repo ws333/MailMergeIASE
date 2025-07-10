@@ -3,7 +3,7 @@
  * All persistent state is stored via this model.
  */
 import { action, computed, thunk, thunkOn } from "easy-peasy";
-import type { Model } from "./types/modelTypes";
+import type { Model, Prefs } from "./types/modelTypes";
 import { defaultMaxCount, defaultSendingDelay } from "./constants/constants";
 import { countryCodes_EU } from "./constants/countryCodes";
 import {
@@ -85,7 +85,7 @@ export const model: Model = {
     sendEmails: thunk(async (actions, _payload, { getState }) => {
         const {
             data,
-            prefs: { delay, sendmode },
+            prefs: { delay },
             locale: { strings },
         } = getState();
 
@@ -128,7 +128,7 @@ export const model: Model = {
                     progress: current / (data.emails.length + 1),
                     status: strings.sending,
                 });
-                await actions.sendEmail({ email, sendmode });
+                await actions.sendEmail(email);
                 actions.sendDialog.update({
                     status: strings.waiting,
                 });
@@ -148,7 +148,8 @@ export const model: Model = {
         });
     }),
     sendEmail: thunk(async (_actions, payload) => {
-        await messageParent({ type: "SEND_EMAIL", data: { ...payload } });
+        const sendmode: Prefs["sendmode"] = "now";
+        await messageParent({ type: "SEND_EMAIL", data: { email: payload, sendmode } });
     }),
     // Everything associated with an email being sent
     sendDialog: {

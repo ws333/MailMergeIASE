@@ -1,5 +1,5 @@
-import { Text } from "radzionkit";
 import { CSSProperties } from "styled-components";
+import { Text } from "ui-kit";
 
 const styles: CSSProperties = {
     margin: 0,

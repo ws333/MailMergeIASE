@@ -5,6 +5,8 @@ export type EmailComponentProps = {
     name: string;
 };
 
+export type ProjectEnvironment = "addon" | "webapp" | "unknown";
+
 export type TEmailComponent = ({ name }: EmailComponentProps) => JSX.Element;
 
 export type FileContent = number[];

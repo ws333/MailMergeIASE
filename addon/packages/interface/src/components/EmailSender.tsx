@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { Email } from "../types/modelTypes";
-import type { MessagePayload } from "../types/types";
+import type { MessagePayload, ProjectEnvironment } from "../types/types";
 import type { ContactI3C, LogMessageOptions } from "../types/typesI3C";
-import { defaultRandomWindow, fullProgressBarDelay, zeroWidtSpace } from "../constants/constants";
-import { useStoreActions, useStoreState } from "../hooks/storeHooks";
+import {
+    ERROR_ENVIRONMENT_UNKNOWN,
+    defaultRandomWindow,
+    fullProgressBarDelay,
+    zeroWidtSpace,
+} from "../constants/constants";
+import { useStoreState } from "../hooks/storeHooks";
 import { useContactList } from "../hooks/useContactList";
 import { useEmailOptions } from "../hooks/useEmailOptions";
 import { useUpdateSendingStats } from "../hooks/useUpdateSendingStats";
@@ -26,7 +31,14 @@ import SendingLog from "./SendingLog";
 import SendingProgress from "./SendingProgress";
 import "./EmailSender.css";
 
-const EmailSender = () => {
+type Props = {
+    environment: ProjectEnvironment;
+    sendEmailFn: (email: Email) => Promise<string> | Promise<void>;
+    InfoComponent?: React.ReactElement;
+};
+
+function EmailSender({ environment, sendEmailFn, InfoComponent }: Props) {
+    if (environment === "unknown") throw new Error(ERROR_ENVIRONMENT_UNKNOWN);
     const [message, setMessage] = useState<string>(zeroWidtSpace); // zeroWidtSpace used to keep styling consistent
     const [errorMessage, setErrorMessage] = useState<string>();
     const [isSending, setIsSending] = useState(false);
@@ -37,7 +49,6 @@ const EmailSender = () => {
     const countryCodeRef = useRef("");
     countryCodeRef.current = useStoreState((state) => state.emailOptions.countryCode);
 
-    const sendEmail = useStoreActions((actions) => actions.sendEmail);
     const controller = useRef(new AbortController());
 
     useUpdateSendingStats(isSending);
@@ -195,7 +206,7 @@ const EmailSender = () => {
             body: emailText,
         };
 
-        await sendEmail({ email, sendmode: "now" });
+        await sendEmailFn(email);
     };
 
     const onClickEndSession = () => {
@@ -223,6 +234,7 @@ const EmailSender = () => {
     return (
         <div className="container_email_sender">
             <Header />
+            {InfoComponent}
             <br />
 
             {userDialog.isOpen && (
@@ -293,6 +305,6 @@ const EmailSender = () => {
             <SendingLog logMessages={sendingLog} />
         </div>
     );
-};
+}
 
 export default EmailSender;

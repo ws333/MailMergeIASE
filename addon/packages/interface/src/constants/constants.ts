@@ -11,6 +11,7 @@ export const COUNTRYCODE_QUERY = "?fields=status,countryCode";
 
 export const defaultFetchTimeout = 5000;
 
+export const ERROR_ENVIRONMENT_UNKNOWN = "Not able to determine if running as an addon or as a web app!";
 export const ERROR_NETWORK_OFFLINE = "You seem to be offline, please make sure you are connected to the Internet!";
 export const ERROR_FETCHING_COUNTRYCODE = "Failed to download country code, please make sure that you are online...";
 export const ERROR_FETCHING_CONTACTS = "Failed to download contact lists, please make sure that you are online...";

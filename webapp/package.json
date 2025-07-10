@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cd frontend && pnpm run dev",
     "build": "pnpm -r build",
-    "check": "tsc",
+    "check": "cd frontend && tsc",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",

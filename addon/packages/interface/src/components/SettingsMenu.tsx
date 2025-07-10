@@ -1,8 +1,8 @@
-import { Menu, MenuOption, MenuOptionProps, OpenMenuButton } from "radzionkit";
-import { DownloadIcon } from "radzionkit/ui/icons/DownloadIcon";
-import { InfoIcon } from "radzionkit/ui/icons/InfoIcon";
-import { TrashBinIcon } from "radzionkit/ui/icons/TrashBinIcon";
 import styled from "styled-components";
+import { TrashBinIcon } from "ui-kit";
+import { InfoIcon } from "ui-kit";
+import { DownloadIcon } from "ui-kit";
+import { Menu, MenuOption, MenuOptionProps, OpenMenuButton } from "ui-kit";
 import { DOCS_URL } from "../constants/constants";
 import { useStoreActions, useStoreState } from "../hooks/storeHooks";
 import { exportFromLocalStorage } from "../helpers/exportFromLocalStorage";

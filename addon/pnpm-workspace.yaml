@@ -2,7 +2,7 @@ packages:
     - packages/*
 
 ignoredBuiltDependencies:
-    - radzionkit
+    - ui-kit
 
 onlyBuiltDependencies:
     - esbuild

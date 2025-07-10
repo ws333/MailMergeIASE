@@ -1,8 +1,8 @@
-import { MenuOption, MenuView, Text } from "radzionkit";
-import { RefreshIcon } from "radzionkit/ui/icons/RefreshIcon";
 import { ChangeEvent, useRef } from "react";
 import { ToastContentProps, toast } from "react-toastify";
 import { CSSProperties } from "styled-components";
+import { RefreshIcon } from "ui-kit";
+import { MenuOption, MenuView, Text } from "ui-kit";
 import { ImportStats } from "../types/typesI3C";
 import { useStoreActions } from "../hooks/storeHooks";
 import { importToLocalStorage } from "../helpers/importToLocalStorage";

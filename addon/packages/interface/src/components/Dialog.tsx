@@ -1,6 +1,6 @@
-import { Button, ConfirmationModal, VStack } from "radzionkit";
-import { Modal } from "radzionkit/ui/modal";
 import styled from "styled-components";
+import { Modal } from "ui-kit";
+import { Button, ConfirmationModal, VStack } from "ui-kit";
 import { UserDialog } from "../types/modelTypes";
 import { useStoreActions } from "../hooks/storeHooks";
 

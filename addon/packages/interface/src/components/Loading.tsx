@@ -1,6 +1,6 @@
-import { Text } from "radzionkit";
-import { Spinner } from "radzionkit/ui/loaders/Spinner";
 import { CSSProperties } from "react";
+import { Spinner } from "ui-kit";
+import { Text } from "ui-kit";
 import HeaderWithIFO from "./HeaderWithIFO";
 
 const divStyles: CSSProperties = {

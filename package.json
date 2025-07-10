@@ -1,27 +1,20 @@
 {
-  "name": "iases3-workspace",
+  "name": "iases3frontends",
   "version": "1.0.0",
   "private": true,
-  "description": "IASES3 unified workspace",
+  "description": "IASES3 unified workspace for frontends",
   "scripts": {
     "build": "pnpm -r build",
-    "dev:addon": "cd addon && pnpm run watch",
-    "dev:webapp": "cd webapp/frontend && pnpm dev",
+    "dev:addon": "cd addon/packages/browser-preview && pnpm run dev",
+    "dev:addon:watch": "cd addon/packages/interface && pnpm run watch",
+    "dev:webapp": "cd webapp/frontend && pnpm run dev",
     "build:addon": "cd addon && pnpm run build",
-    "build:webapp": "cd webapp/frontend && pnpm build",
-    "build:shared": "cd addon/packages/shared-ui && pnpm run build",
-    "watch:shared": "cd addon/packages/shared-ui && pnpm run watch",
+    "build:webapp": "cd webapp/frontend && pnpm run build",
+    "check": "pnpm -r check",
     "lint": "pnpm -r lint",
-    "clean": "pnpm -r clean",
-    "install:all": "pnpm install",
-    "check": "pnpm -r check"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "clean": "pnpm -r clean && ./scripts/clean_and_pnpm.sh"
   },
   "devDependencies": {
-    "@types/node": "^24.0.12",
     "@vitejs/plugin-react": "^4.6.0",
     "pnpm": "^9.0.0",
     "vite": "^6.3.5",

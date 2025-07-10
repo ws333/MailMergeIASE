@@ -1,7 +1,7 @@
 import { Configuration, LogLevel, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 
-const redirectUri = import.meta.env.PROD ? 'https://iases3.onrender.com/step3' : 'http://localhost:5173/step3';
-export const postLogoutRedirectUri = import.meta.env.PROD ? 'https://iases3.onrender.com' : 'http://localhost:5173';
+const redirectUri = import.meta.env.PROD ? 'https://iases3.onrender.com/step3' : 'http://localhost:5174/step3';
+export const postLogoutRedirectUri = import.meta.env.PROD ? 'https://iases3.onrender.com' : 'http://localhost:5174';
 
 /**
  * Configuration object to be passed to MSAL instance on creation.

@@ -1,7 +1,7 @@
-import { LocalStorage } from "radzionkit/ui/state/LocalStorage";
-import { TemporaryStorage } from "radzionkit/ui/state/TemporaryStorage";
-import { createPersistentStateHook } from "radzionkit/ui/state/createPersistentStateHook";
-import { createPersistentStateManager } from "radzionkit/ui/state/createPersistentStateManager";
+import { createPersistentStateManager } from "ui-kit";
+import { createPersistentStateHook } from "ui-kit";
+import { TemporaryStorage } from "ui-kit";
+import { LocalStorage } from "ui-kit";
 
 export enum PersistentStateKey {
     ThemePreference = "themePreference",

@@ -1,5 +1,5 @@
-import { Button } from "radzionkit";
 import { MouseEventHandler } from "react";
+import { Button } from "ui-kit";
 
 type Props = {
     disabled?: boolean | string;

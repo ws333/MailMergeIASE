@@ -1,6 +1,6 @@
-import { MenuOption, MenuView } from "radzionkit";
-import { ListIcon } from "radzionkit/ui/icons/ListIcon";
 import { useEffect, useState } from "react";
+import { ListIcon } from "ui-kit";
+import { MenuOption, MenuView } from "ui-kit";
 import { useStoreActions } from "../hooks/storeHooks";
 import { readSendingLog } from "../helpers/sendingLog";
 import { showFullSendingLogDialog } from "../helpers/showFullSendingLogDialog";

@@ -12,7 +12,7 @@ export interface Model {
     cancel: Thunk<Model>;
     parseSpreadsheet: Thunk<Model, undefined, never, Model>;
     sendEmails: Thunk<Model, undefined, never, Model>;
-    sendEmail: Thunk<Model, { email: Email; sendmode: Prefs["sendmode"] }>;
+    sendEmail: Thunk<Model, Email>;
     sendDialog: SendDialog;
     openUrl: Thunk<Model, string>;
     userDialog: UserDialog;

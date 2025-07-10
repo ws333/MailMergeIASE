@@ -1,22 +1,14 @@
-import { ContactI3C } from '../types/types';
+import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
 
-export async function fetchSendEmail(
-  url: string,
-  accessToken: string,
-  contact: ContactI3C,
-  emailText: string,
-  selectedSubject: string,
-) {
+export async function fetchSendEmail(url: string, accessToken: string, email: Email) {
   return await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       accessToken,
-      to: contact.e,
-      subject: selectedSubject,
-      text: emailText,
-      nation: contact.na,
-      uid: contact.uid,
+      to: email.to,
+      subject: email.subject,
+      text: email.body,
     }),
   });
 }

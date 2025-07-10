@@ -27,10 +27,9 @@
         "paths": {
             // For internal resolution and subpaths, for optimal setup see
             // https://www.typescriptlang.org/docs/handbook/modules/reference.html#paths-should-not-point-to-monorepo-packages-or-node_modules-packages
-            "radzionkit/*": ["./node_modules/radzionkit/lib/*"],
-            "@lib/ui/*": ["./node_modules/radzionkit/lib/ui/*"],
-            "@lib/utils/*": ["./node_modules/radzionkit/lib/utils/*"],
-            "@lib/codegen/*": ["./node_modules/radzionkit/lib/codegen/*"]
+            "@lib/ui/*": ["./node_modules/ui-kit/lib/ui/*"],
+            "@lib/utils/*": ["./node_modules/ui-kit/lib/utils/*"],
+            "@lib/codegen/*": ["./node_modules/ui-kit/lib/codegen/*"]
         }
     },
     "include": ["packages"],

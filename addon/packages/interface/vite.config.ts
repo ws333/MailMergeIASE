@@ -16,9 +16,9 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@lib/ui": path.resolve(__dirname, "../../node_modules/radzionkit/lib/ui"),
-            "@lib/utils": path.resolve(__dirname, "../../node_modules/radzionkit/lib/utils"),
-            "@lib/codegen": path.resolve(__dirname, "../../node_modules/radzionkit/lib/codegen"),
+            "@lib/ui": path.resolve(__dirname, "../../node_modules/ui-kit/lib/ui"),
+            "@lib/utils": path.resolve(__dirname, "../../node_modules/ui-kit/lib/utils"),
+            "@lib/codegen": path.resolve(__dirname, "../../node_modules/ui-kit/lib/codegen"),
         },
     },
     build: {

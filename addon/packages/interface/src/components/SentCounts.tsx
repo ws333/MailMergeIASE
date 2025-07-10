@@ -1,6 +1,6 @@
 import { VStack } from "@lib/ui/css/stack";
 import { ExpandablePanel } from "@lib/ui/panel/ExpandablePanel";
-import { Tooltip } from "radzionkit/ui/tooltips/Tooltip";
+import { Tooltip } from "ui-kit";
 import { oneDay, oneHour, oneMonth, sevenDays, threeMonths } from "../constants/timeConstants";
 import { useStoreState } from "../hooks/storeHooks";
 import "./SentCounts.css";

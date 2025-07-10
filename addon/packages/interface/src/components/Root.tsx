@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StoreProvider, createStore } from "easy-peasy";
-import { DarkLightThemeProvider, GlobalStyle, ThemePreference } from "radzionkit";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { DarkLightThemeProvider, GlobalStyle, ThemePreference } from "ui-kit";
 import { setDevModeIfLocalhost } from "../helpers/getSetDevMode";
 import { model } from "../model";
 import { PersistentStateKey, usePersistentState } from "../state/persistentState";
@@ -18,6 +18,7 @@ export function Root() {
     setDevModeIfLocalhost();
 
     const [theme, setTheme] = usePersistentState<ThemePreference>(PersistentStateKey.ThemePreference, "system");
+
     return (
         <StoreProvider store={store}>
             <DarkLightThemeProvider value={theme} onChange={setTheme}>
