@@ -1,7 +1,9 @@
 import { AccountInfo, IPublicClientApplication, InteractionRequiredAuthError } from '@azure/msal-browser';
 import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
-import { URL_SEND_EMAIL } from '../constants/constants';
+import { BACKEND_URL_DEV, BACKEND_URL_PROD } from '../constants/constants';
 import { fetchSendEmail } from '../helpers/fetchSendEmail';
+
+const URL_SEND_EMAIL = import.meta.env.PROD ? BACKEND_URL_PROD.href : BACKEND_URL_DEV.href;
 
 type Args = {
   email: Email;

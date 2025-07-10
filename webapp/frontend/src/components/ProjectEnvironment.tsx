@@ -1,6 +1,7 @@
 import { useMsal } from '@azure/msal-react';
 import { Route, Routes } from 'react-router-dom';
 import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
+import { ROUTE_PATH } from '../constants/constants';
 import App from '../../../../addon/packages/interface/src/components/App';
 import { getProjectEnvironment } from '../../../../addon/packages/interface/src/helpers/getProjectEnvironment';
 import { loginRequest } from '../auth/authConfig';
@@ -24,7 +25,7 @@ function ProjectEnvironment() {
       <Routes>
         <Route index element={<LogIn />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="step3">
+          <Route path={ROUTE_PATH}>
             <Route
               index
               element={<App environment={environment} sendEmailFn={sendMailFn} InfoComponent={InfoComponent} />}

@@ -1,12 +1,13 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { DEV_PORT } from './src/constants/constants';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5174,
+    port: DEV_PORT,
   },
   define: {
     // Define project type at build time
