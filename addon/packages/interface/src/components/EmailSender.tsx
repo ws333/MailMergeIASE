@@ -26,6 +26,7 @@ import EmailOptions from "./EmailOptions";
 import EmailPreview from "./EmailPreview";
 import ErrorMessage from "./ErrorMessage";
 import Header from "./Header";
+import Message from "./Message";
 import SelectNations from "./SelectNations";
 import SendingLog from "./SendingLog";
 import SendingProgress from "./SendingProgress";
@@ -263,7 +264,7 @@ function EmailSender({ environment, sendEmailFn, InfoComponent }: Props) {
                 </div>
 
                 {showErrorMessage && <ErrorMessage errorMessage={errorMessage} />}
-                {message && <p>{message}</p>}
+                {message && <Message message={message} />}
 
                 <div className="container_buttons">
                     {!isSending && (
