@@ -1,9 +1,8 @@
 import { AccountInfo, IPublicClientApplication, InteractionRequiredAuthError } from '@azure/msal-browser';
 import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
-import { BACKEND_URL_DEV, BACKEND_URL_PROD } from '../constants/constants';
+import { StatusBackend } from '../../../../addon/packages/interface/src/types/types';
+import { URL_BACKEND } from '../constants/constantsImportMeta';
 import { fetchSendEmail } from '../helpers/fetchSendEmail';
-
-const URL_SEND_EMAIL = import.meta.env.PROD ? BACKEND_URL_PROD.href : BACKEND_URL_DEV.href;
 
 type Args = {
   email: Email;
@@ -12,8 +11,20 @@ type Args = {
   scopes: string[];
 };
 
-export async function sendEmailMSAL({ email, instance, accounts, scopes }: Args): Promise<string> {
-  // setMessage("Sending email, please wait...");
+export async function sendEmailMSAL({ email, instance, accounts, scopes }: Args): Promise<StatusBackend> {
+  async function sendEmail(accessToken: string): Promise<StatusBackend> {
+    const response = await fetchSendEmail(URL_BACKEND, accessToken, email);
+
+    if (!response.ok) {
+      const message = `Failed to send the email! The server responded with ${response.statusText}`;
+      const errorString = `HTTP error! status: ${response.status.toString()}`;
+      return { status: 'OK', message, errorString: errorString };
+    }
+
+    const responseText = await response.text();
+    const message = `${responseText} - ${new Date().toLocaleString()}`;
+    return { status: 'OK', message };
+  }
 
   try {
     const tokenResponse = await instance.acquireTokenSilent({
@@ -22,30 +33,18 @@ export async function sendEmailMSAL({ email, instance, accounts, scopes }: Args)
     });
     const accessToken = tokenResponse.accessToken;
 
-    const response = await fetchSendEmail(URL_SEND_EMAIL, accessToken, email);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status.toString()}`);
-
-    const data = await response.text();
-    const message = `${data} - ${new Date().toLocaleString()}`;
-
-    // setMessage(message);
-
-    return message;
+    return await sendEmail(accessToken);
   } catch (error) {
     if (error instanceof InteractionRequiredAuthError) {
       const tokenResponse = await instance.acquireTokenPopup({ scopes });
       const accessToken = tokenResponse.accessToken;
 
-      const response = await fetchSendEmail(URL_SEND_EMAIL, accessToken, email);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status.toString()}`);
-
-      const message = await response.text();
-      //   setMessage(message);
-
-      return message;
+      return await sendEmail(accessToken);
     } else {
-      const message = `Failed to send email: ${(error as Error).message}`;
-      return message;
+      const errorMessage = (error as Error).message;
+      const errorString = `Unhandled error in sendEmailMSAL: ${errorMessage}`;
+      const message = `Failed to send email! An unexpected error occured, please contact support.`;
+      return { status: 'ERROR', message, errorString };
     }
   }
 }

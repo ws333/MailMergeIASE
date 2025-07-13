@@ -1,9 +1,16 @@
 import type { ChangeEvent, FocusEvent, JSX } from "react";
 import { Email, Prefs } from "./modelTypes";
 
+export type StatusBackend = {
+    status: "OK" | "ERROR";
+    message: string;
+    errorString?: string;
+};
+
 export type ProjectEnvProps = {
     environment: ProjectEnvironment;
-    sendEmailFn: (email: Email) => Promise<string> | Promise<void>;
+    sendEmailFn: (email: Email) => Promise<StatusBackend> | Promise<void>;
+    sendEmailPreflightFn?: () => Promise<StatusBackend>;
     InfoComponent?: React.ReactElement;
 };
 

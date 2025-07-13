@@ -32,11 +32,15 @@ import SendingLog from "./SendingLog";
 import SendingProgress from "./SendingProgress";
 import "./EmailSender.css";
 
-function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProps) {
+/**
+ * - The EmailSender component is universal and used by both addon and webapp
+ */
+function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoComponent }: ProjectEnvProps) {
     if (environment === "unknown") throw new Error(ERROR_ENVIRONMENT_UNKNOWN);
     const [message, setMessage] = useState<string>(zeroWidtSpace); // zeroWidtSpace used to keep styling consistent
     const [errorMessage, setErrorMessage] = useState<string>();
     const [isSending, setIsSending] = useState(false);
+    const [prefilghtInProgess, setPrefilghtInProgess] = useState(false);
     const [sendingLog, setSendingLog] = useState<string[]>([]);
 
     const userDialog = useStoreState((state) => state.userDialog);
@@ -133,12 +137,24 @@ function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProp
 
         if (!selectedSubject) {
             setMessage("Please select or enter a subject");
-            return false;
+            return;
+        }
+
+        if (sendEmailPreflightFn) {
+            setPrefilghtInProgess(true);
+            const result = await sendEmailPreflightFn();
+            setPrefilghtInProgess(false);
+
+            if (result.status === "ERROR") {
+                setMessage(result.message);
+                return;
+            }
         }
 
         setIsSending(true);
-        setMessage("Sending emails...");
         setErrorMessage("");
+        setMessage("Sending emails, please wait...");
+        await waitRandomSeconds(fullProgressBarDelay / 2, 0);
 
         const contactsToSendTo = selectedContactsNotSent.slice(0, maxCount - emailsSent);
 
@@ -201,7 +217,11 @@ function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProp
             body: emailText,
         };
 
-        await sendEmailFn(email);
+        // Thunderbird addon always return undefined
+        // webapp returns status including a message to display to the user
+        const status = await sendEmailFn(email);
+        if (status?.message) setMessage(status.message);
+        if (status?.errorString) controller.current.abort();
     };
 
     const onClickEndSession = () => {
@@ -218,11 +238,11 @@ function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProp
 
     const showErrorMessage = errorMessage && !isBusy;
 
-    const sendButtonDisabled = isBusy || !selectedContactsNotSent.length;
+    const sendButtonDisabled = isBusy || prefilghtInProgess || !selectedContactsNotSent.length;
 
     const stopButtonDisabled =
         leftToSendCount.current === 0 ||
-        emailsSent === 0 ||
+        (emailsSent === 0 && environment === "addon") ||
         controller.current.signal.aborted ||
         checkInProgress.current;
 
@@ -268,6 +288,7 @@ function EmailSender({ environment, sendEmailFn, InfoComponent }: ProjectEnvProp
                             )}
                             <ButtonSendEmails
                                 checkInProgress={checkInProgress.current}
+                                preflightInProgress={prefilghtInProgess}
                                 disabled={sendButtonDisabled}
                                 endSession={endSession}
                                 leftToSendCount={leftToSendCount.current}

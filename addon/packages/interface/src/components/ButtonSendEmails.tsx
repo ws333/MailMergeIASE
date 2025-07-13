@@ -4,18 +4,26 @@ import { useStoreState } from "../hooks/storeHooks";
 
 type Props = {
     checkInProgress: boolean;
+    preflightInProgress: boolean;
     disabled: boolean | string;
     endSession: boolean;
     leftToSendCount: number;
     onClick: MouseEventHandler;
 };
 
-function ButtonSendEmails({ checkInProgress, disabled, endSession, leftToSendCount, onClick }: Props) {
+function ButtonSendEmails({
+    checkInProgress,
+    preflightInProgress,
+    disabled,
+    endSession,
+    leftToSendCount,
+    onClick,
+}: Props) {
     const emailsSent = useStoreState((state) => state.contactList.emailsSent);
     const selectedNations = useStoreState((state) => state.contactList.selectedNations);
 
     const buttonText =
-        checkInProgress || endSession
+        checkInProgress || endSession || preflightInProgress
             ? "Please wait..."
             : !selectedNations.length
               ? "No contacts selected"

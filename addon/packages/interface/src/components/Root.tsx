@@ -8,7 +8,7 @@ import { model } from "../model";
 import { PersistentStateKey, usePersistentState } from "../state/persistentState";
 import ErrorFallback from "./ErrorFallback";
 import Loading from "./Loading";
-import ProjectEnvironment from "./ProjectEnvironment";
+import SetProjectEnvironment from "./SetProjectEnvironment";
 
 const store = createStore(model, { disableImmer: true });
 
@@ -26,7 +26,7 @@ export function Root() {
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                     <Suspense fallback={<Loading />}>
                         <QueryClientProvider client={queryClient}>
-                            <ProjectEnvironment />
+                            <SetProjectEnvironment />
                         </QueryClientProvider>
                     </Suspense>
                 </ErrorBoundary>

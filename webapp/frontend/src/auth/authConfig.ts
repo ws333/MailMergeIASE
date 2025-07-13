@@ -1,8 +1,8 @@
 import { Configuration, LogLevel, PopupRequest, RedirectRequest } from '@azure/msal-browser';
-import { DEV_SERVER, PROD_SERVER, ROUTE_PATH } from '../constants/constants';
+import { PATH_WEBAPP, SERVER_DEV, SERVER_PROD } from '../constants/constants';
 
-const redirectUri = import.meta.env.PROD ? `${PROD_SERVER}/${ROUTE_PATH}` : `${DEV_SERVER}/${ROUTE_PATH}`;
-export const postLogoutRedirectUri = import.meta.env.PROD ? PROD_SERVER : DEV_SERVER;
+const redirectUri = import.meta.env.PROD ? `${SERVER_PROD}/${PATH_WEBAPP}` : `${SERVER_DEV}/${PATH_WEBAPP}`;
+export const postLogoutRedirectUri = import.meta.env.PROD ? SERVER_PROD : SERVER_DEV;
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
