@@ -4,13 +4,13 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "cd frontend && pnpm run dev",
+    "dev": "pnpm -r dev",
     "build": "pnpm -r build",
-    "check": "cd frontend && tsc",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint .",
-    "ca": "pnpm run check && pnpm run lint && pnpm run format:check"
+    "check": "pnpm -r check",
+    "format": "pnpm -r format",
+    "format:check": "pnpm -r format:check",
+    "lint": "pnpm -r lint",
+    "ca": "pnpm -r check && pnpm -r lint && pnpm -r format:check"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
