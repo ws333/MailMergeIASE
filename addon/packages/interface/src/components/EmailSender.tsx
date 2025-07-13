@@ -183,6 +183,16 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoCompo
 
                 await prepareAndSendEmail(contact);
 
+                // Don't count and log email as sent for webapp when signal has been aborted, e.g. if backend is down.
+                // For addon the compose email window will still be open and could be sent manually, so logging email as sent.
+                // This is described in the docs. To unify the behaviour, close the email compose window programatically.
+                if (controller.current.signal.aborted && environment === "webapp") {
+                    await waitRandomSeconds(fullProgressBarDelay / 2, 0);
+                    controller.current = new AbortController();
+                    setIsSending(false);
+                    break;
+                }
+
                 const _delay = leftToSendCount.current > 1 ? delay : fullProgressBarDelay;
                 const randomWindow = leftToSendCount.current > 1 ? defaultRandomWindow : 0;
 
