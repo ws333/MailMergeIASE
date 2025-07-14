@@ -158,22 +158,18 @@ export const iframeService: IframeService = {
             console.warn("Function not implemented");
             return {} as Strings;
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setPreferences: async (_prefs?: Partial<Prefs>) => {
             console.warn("Function not implemented");
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         sendEmails: async (_emails: Email[]) => {
             console.warn("Function not implemented");
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         sendEmail: async (_email: Email, _sendmode?: Prefs["sendmode"]) => {
             console.warn("Function not implemented");
         },
         cancel: () => {
             console.warn("Function not implemented");
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         openUrl: (_url: string) => {
             console.warn("Function not implemented");
         },
