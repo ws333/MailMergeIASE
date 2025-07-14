@@ -4,4 +4,4 @@
  */
 import { URL_BACKEND_DEV, URL_BACKEND_PROD } from './constants';
 
-export const URL_BACKEND = import.meta.env.PROD ? URL_BACKEND_PROD.href : URL_BACKEND_DEV.href;
+export const URL_BACKEND = import.meta.env.PROD ? URL_BACKEND_PROD : URL_BACKEND_DEV;
