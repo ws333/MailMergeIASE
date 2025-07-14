@@ -6,7 +6,7 @@ import App from '../../../../addon/packages/interface/src/components/App';
 import { getProjectEnvironment } from '../../../../addon/packages/interface/src/helpers/getProjectEnvironment';
 import { pingBackend } from '../helpers/pingBackend';
 import { loginRequest } from '../auth/authConfig';
-import { sendEmailMSAL } from '../auth/sendMailMSAL';
+import { sendEmailMS } from '../auth/sendMailMS';
 import EmailSenderInfo from './EmailSenderInfo';
 import LogIn from './LogIn';
 import Page404 from './Page404';
@@ -18,7 +18,7 @@ function SetProjectEnvironment() {
   const { instance, accounts } = useMsal();
   const { scopes } = loginRequest;
 
-  const sendMailFn = async (email: Email) => await sendEmailMSAL({ email, instance, accounts, scopes });
+  const sendMailFn = async (email: Email) => await sendEmailMS({ email, instance, accounts, scopes });
   const sendEmailPreflightFn = pingBackend;
   const InfoComponent = <EmailSenderInfo accounts={accounts} />;
 

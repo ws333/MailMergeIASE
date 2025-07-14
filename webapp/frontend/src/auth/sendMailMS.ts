@@ -1,6 +1,7 @@
 import { AccountInfo, IPublicClientApplication, InteractionRequiredAuthError } from '@azure/msal-browser';
 import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
 import { StatusBackend } from '../../../../addon/packages/interface/src/types/types';
+import { PATH_SEND_EMAIL_MS } from '../constants/constants';
 import { URL_BACKEND } from '../constants/constantsImportMeta';
 import { fetchSendEmail } from '../helpers/fetchSendEmail';
 
@@ -11,9 +12,10 @@ type Args = {
   scopes: string[];
 };
 
-export async function sendEmailMSAL({ email, instance, accounts, scopes }: Args): Promise<StatusBackend> {
+export async function sendEmailMS({ email, instance, accounts, scopes }: Args): Promise<StatusBackend> {
   async function sendEmail(accessToken: string): Promise<StatusBackend> {
-    const response = await fetchSendEmail(URL_BACKEND, accessToken, email);
+    const url = `${URL_BACKEND}/${PATH_SEND_EMAIL_MS}`;
+    const response = await fetchSendEmail(url, accessToken, email);
 
     if (!response.ok) {
       const message = `Failed to send the email! The server responded with ${response.statusText}`;
