@@ -11,7 +11,10 @@
     "build:addon": "cd addon && pnpm run build",
     "build:webapp": "cd webapp/frontend && pnpm run build",
     "check": "pnpm -r check",
+    "format": "pnpm -r format",
+    "format:check": "pnpm -r format:check",
     "lint": "pnpm -r lint",
+    "ca": "pnpm -r ca",
     "clean": "pnpm -r clean && ./scripts/clean_and_pnpm.sh"
   },
   "devDependencies": {
