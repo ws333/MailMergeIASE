@@ -33,5 +33,5 @@
         }
     },
     "include": ["packages"],
-    "exclude": ["node_modules", "packages/**/node_modules"]
+    "exclude": ["node_modules", "packages/**/node_modules", "packages/**/dist"]
 }
