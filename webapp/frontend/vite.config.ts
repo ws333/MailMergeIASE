@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: PORT_DEV,
+    fs: {
+      allow: [path.resolve(__dirname), path.resolve(__dirname, '../../addon/packages/thunderbird-extension/public')],
+    },
   },
   define: {
     // Define project type at build time
