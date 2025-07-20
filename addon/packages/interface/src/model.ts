@@ -393,6 +393,14 @@ export const model: Model = {
 
         EmailComponent: computed((state) => emailComponents[state.language]),
     },
+    auth: {
+        currentLogin: { provider: null, userEmail: "" },
+        setCurrentLogin: action((state, payload) => ({ ...state, currentLogin: payload })),
+        resetCurrentLogin: action((state) => ({
+            ...state,
+            currentLogin: { provider: null, userEmail: "", accessToken: "" },
+        })),
+    },
     render: {
         forcedRender: 1,
         initiateForcedRender: action((state) => ({ ...state, forcedRender: state.forcedRender + 1 })),

@@ -1,9 +1,12 @@
 import { useMsal } from '@azure/msal-react';
+import { useGoogleLogin } from '@react-oauth/google';
 import { CSSProperties } from 'react';
 import HeaderWithIFO from '../../../../addon/packages/interface/src/components/HeaderWithIFO';
-import { loginRequest } from '../auth/authConfig';
+import { setLastLoginButtonClicked, setLoginGoogleInProgress } from '../helpers/localstorageHelpers';
+import { loginRequest } from '../auth/authConfigMS';
+import { GOOGLE_LOGIN_CONFIG } from '../auth/autoConfigGoogle';
 
-const divStyles: CSSProperties = {
+const outerDivStyles: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -12,10 +15,18 @@ const divStyles: CSSProperties = {
   width: '100%',
 };
 
+const buttonDivStyles: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '1rem',
+  marginTop: '2rem',
+};
+
 const LogIn = () => {
   const { instance } = useMsal();
 
-  const onClickLogin = () => {
+  const onClickLoginMS = () => {
+    setLastLoginButtonClicked('MS');
     instance
       .loginRedirect({
         ...loginRequest,
@@ -23,10 +34,21 @@ const LogIn = () => {
       .catch((error: unknown) => console.log(error));
   };
 
+  const googleLogin = useGoogleLogin(GOOGLE_LOGIN_CONFIG);
+
+  const onClickGoogleLogin = () => {
+    setLastLoginButtonClicked('Google');
+    setLoginGoogleInProgress('true');
+    googleLogin();
+  };
+
   return (
-    <div style={divStyles}>
+    <div style={outerDivStyles}>
       <HeaderWithIFO />
-      <button onClick={onClickLogin}>Login with Microsoft</button>
+      <div style={buttonDivStyles}>
+        <button onClick={onClickLoginMS}>Login with Microsoft</button>
+        <button onClick={onClickGoogleLogin}>Login with Google</button>
+      </div>
     </div>
   );
 };

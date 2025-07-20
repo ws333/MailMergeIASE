@@ -1,10 +1,18 @@
 import type { ChangeEvent, FocusEvent, JSX } from "react";
 import { Email, Prefs } from "./modelTypes";
 
+export type Provider = "MS" | "Google";
+
+export type CurrentLogin = {
+    provider: Provider | null;
+    userEmail: string;
+    accessToken?: string;
+};
+
 export type StatusBackend = {
     status: "OK" | "ERROR";
-    message: string;
-    errorString?: string;
+    message: string; // Message to display to user
+    error?: string;
 };
 
 export type ProjectEnvProps = {

@@ -231,7 +231,7 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoCompo
         // webapp returns status including a message to display to the user
         const status = await sendEmailFn(email);
         if (status?.message) setMessage(status.message);
-        if (status?.errorString) controller.current.abort();
+        if (status?.error) controller.current.abort();
     };
 
     const onClickEndSession = () => {

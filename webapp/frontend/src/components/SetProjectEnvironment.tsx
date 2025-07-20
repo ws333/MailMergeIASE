@@ -1,44 +1,40 @@
-import { useMsal } from '@azure/msal-react';
 import { Route, Routes } from 'react-router-dom';
-import { Email } from '../../../../addon/packages/interface/src/types/modelTypes';
-import { PATH_WEBAPP } from '../constants/constants';
+import { PATH_WEBAPP, PATH_WEBAPP_REDIRECT } from '../constants/constants';
 import App from '../../../../addon/packages/interface/src/components/App';
+import { useCurrentLogin } from '../hooks/useCurrentLogin';
 import { getProjectEnvironment } from '../../../../addon/packages/interface/src/helpers/getProjectEnvironment';
 import { pingBackend } from '../helpers/pingBackend';
-import { loginRequest } from '../auth/authConfig';
-import { sendEmailMS } from '../auth/sendMailMS';
-import EmailSenderInfo from './EmailSenderInfo';
+import GoogleLoggedInAs from './GoogleLoggedInAs';
 import LogIn from './LogIn';
+import MSLoggedInAs from './MSLoggedInAs';
 import Page404 from './Page404';
 import ProtectedRoute from './ProtectedRoute';
 
 function SetProjectEnvironment() {
   const environment = getProjectEnvironment();
 
-  const { instance, accounts } = useMsal();
-  const { scopes } = loginRequest;
+  const { accounts, userEmail, provider, sendEmailFn } = useCurrentLogin();
 
-  const sendMailFn = async (email: Email) => await sendEmailMS({ email, instance, accounts, scopes });
   const sendEmailPreflightFn = pingBackend;
-  const InfoComponent = <EmailSenderInfo accounts={accounts} />;
+
+  const InfoComponent =
+    provider === 'MS' ? <MSLoggedInAs accounts={accounts} /> : <GoogleLoggedInAs userEmail={userEmail} />;
 
   return (
     <Routes>
-      <Route index element={<LogIn />} />
+      <Route path={PATH_WEBAPP} element={<LogIn />} />
       <Route element={<ProtectedRoute />}>
-        <Route path={PATH_WEBAPP}>
-          <Route
-            index
-            element={
-              <App
-                environment={environment}
-                sendEmailFn={sendMailFn}
-                sendEmailPreflightFn={sendEmailPreflightFn}
-                InfoComponent={InfoComponent}
-              />
-            }
-          />
-        </Route>
+        <Route
+          path={PATH_WEBAPP_REDIRECT}
+          element={
+            <App
+              environment={environment}
+              sendEmailFn={sendEmailFn}
+              sendEmailPreflightFn={sendEmailPreflightFn}
+              InfoComponent={InfoComponent}
+            />
+          }
+        />
       </Route>
       <Route path="*" element={<Page404 />} />
     </Routes>

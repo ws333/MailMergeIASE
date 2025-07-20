@@ -8,7 +8,7 @@ export async function fetchSendEmail(url: string, accessToken: string, email: Em
       accessToken,
       to: email.to,
       subject: email.subject,
-      text: email.body,
+      emailBody: email.body,
     }),
   });
 }

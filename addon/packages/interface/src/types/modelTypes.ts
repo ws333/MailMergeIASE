@@ -1,7 +1,7 @@
 import { Action, Computed, Thunk, ThunkOn } from "easy-peasy";
 import { JSX } from "react";
 import { LanguageOption, SubjectPerLanguage } from "../constants/emailTemplates.ts";
-import type { SpreadsheetData, Strings, TEmailComponent } from "./types.ts";
+import type { CurrentLogin, SpreadsheetData, Strings, TEmailComponent } from "./types.ts";
 import { ContactI3C } from "./typesI3C.ts";
 
 export interface Model {
@@ -18,7 +18,14 @@ export interface Model {
     userDialog: UserDialog;
     contactList: ContactList;
     emailOptions: EmailOptions;
+    auth: Auth;
     render: Render;
+}
+
+interface Auth {
+    currentLogin: CurrentLogin;
+    setCurrentLogin: Action<Auth, CurrentLogin>;
+    resetCurrentLogin: Action<Auth>;
 }
 
 interface Locale {

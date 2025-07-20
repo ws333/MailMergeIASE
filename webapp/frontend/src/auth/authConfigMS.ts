@@ -1,8 +1,5 @@
 import { Configuration, LogLevel, PopupRequest, RedirectRequest } from '@azure/msal-browser';
-import { PATH_WEBAPP, SERVER_DEV, SERVER_PROD } from '../constants/constants';
-
-const redirectUri = import.meta.env.PROD ? `${SERVER_PROD}/${PATH_WEBAPP}` : `${SERVER_DEV}/${PATH_WEBAPP}`;
-export const postLogoutRedirectUri = import.meta.env.PROD ? SERVER_PROD : SERVER_DEV;
+import { POST_LOGOUT_REDIRECT_URI, REDIRECT_URI } from '../constants/constantsImportMeta';
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -13,8 +10,8 @@ export const msalConfig: Configuration = {
   auth: {
     clientId: '3b48599d-a38e-4b59-9504-cbff748b9cc0',
     authority: 'https://login.microsoftonline.com/common',
-    redirectUri: redirectUri, // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
-    postLogoutRedirectUri: postLogoutRedirectUri, // Indicates the page to navigate after logout. You must register this URI on Microsoft Entra admin center/App Registration.
+    redirectUri: REDIRECT_URI, // You must register this URI on Microsoft Extra ID admin center/App Registration.
+    postLogoutRedirectUri: POST_LOGOUT_REDIRECT_URI, // Indicates the page to navigate after logout. You must register this URI on Microsoft Entra admin center/App Registration.
     navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
   },
   cache: {
