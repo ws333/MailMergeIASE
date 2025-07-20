@@ -1,7 +1,7 @@
 type DevModeState = "enabled" | "disabled";
 
 const devModeKey = "devmode";
-const devModeValue = "1";
+const devModeValue = "true";
 
 export function getDevMode(): DevModeState {
     if (localStorage.getItem(devModeKey) === devModeValue) {
@@ -9,6 +9,10 @@ export function getDevMode(): DevModeState {
     } else {
         return "disabled";
     }
+}
+
+export function isDevMode() {
+    return getDevMode() === "enabled";
 }
 
 export function setDevMode(state: DevModeState) {
