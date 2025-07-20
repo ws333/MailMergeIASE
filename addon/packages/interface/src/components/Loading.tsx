@@ -12,15 +12,17 @@ const divStyles: CSSProperties = {
     width: "100%",
 };
 
-function Loading() {
+type Props = {
+    showSpinner?: boolean;
+};
+
+function Loading({ showSpinner = true }: Props) {
     return (
         <>
             <div style={divStyles}>
                 <HeaderWithIFO />
                 <br />
-                <Text size={42}>
-                    <Spinner />
-                </Text>
+                <Text size={42}>{showSpinner && <Spinner />}</Text>
             </div>
         </>
     );
