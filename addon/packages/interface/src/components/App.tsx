@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import { ProjectEnvProps } from "../types/types";
 import EmailSender from "./EmailSender";
 import IconIFO from "./IconIFO";
@@ -23,7 +22,6 @@ export default function App({ environment, sendEmailFn, sendEmailPreflightFn, In
                 sendEmailPreflightFn={sendEmailPreflightFn}
                 InfoComponent={InfoComponent}
             />
-            <ToastContainer />
         </div>
     );
 }
