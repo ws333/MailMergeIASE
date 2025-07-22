@@ -1,5 +1,5 @@
 export const URL_BACKEND_DEV = 'http://localhost:5000';
-export const URL_BACKEND_PROD = 'https://i3c-backend.onrender.com';
+export const URL_BACKEND_PROD = 'https://backend.iase.one';
 
 export const PORT_DEV = 5174;
 export const SERVER_DEV = `http://localhost:${PORT_DEV.toString()}`;
