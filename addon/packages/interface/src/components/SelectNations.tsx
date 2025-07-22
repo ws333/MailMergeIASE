@@ -1,4 +1,5 @@
 import { ContactI3C } from "../types/typesI3C";
+import { splitIntoVerticalColumns } from "../helpers/splitIntoVerticalColumns";
 import { useStoreActions, useStoreState } from "../store/store";
 import { SentCounts } from "./SentCounts";
 import "./SelectNations.css";
@@ -24,6 +25,9 @@ function SelectNations({ selectedContactsNotSent, isSending }: Props) {
         setSelectedNation({ checked, nation });
     };
 
+    const columns = 4;
+    const nationColumns = splitIntoVerticalColumns(nationOptions, columns);
+
     // Todo:The css margins, paddings etc are quite messy, also considering switching to another UI lib (https://base-ui.com/?)
     return (
         <div className="select-nations">
@@ -43,17 +47,21 @@ function SelectNations({ selectedContactsNotSent, isSending }: Props) {
                             Select All
                         </label>
                     </div>
-                    <div className={`nation-list ${isSending ? "disabled" : ""}`}>
-                        {nationOptions.map((nation) => (
-                            <label key={nation} className="nation-item">
-                                <input
-                                    type="checkbox"
-                                    disabled={isSending}
-                                    onChange={(e) => onChangeNation(e.target.checked, nation)}
-                                    checked={selectedNations.includes(nation)}
-                                />
-                                {nation}
-                            </label>
+                    <div className={`nation-list-columns ${isSending ? "disabled" : ""}`}>
+                        {nationColumns.map((col, colIdx) => (
+                            <div key={colIdx} className="nation-list-column">
+                                {col.map((nation) => (
+                                    <label key={nation} className="nation-item">
+                                        <input
+                                            type="checkbox"
+                                            disabled={isSending}
+                                            onChange={(e) => onChangeNation(e.target.checked, nation)}
+                                            checked={selectedNations.includes(nation)}
+                                        />
+                                        {nation}
+                                    </label>
+                                ))}
+                            </div>
                         ))}
                         {!nationOptions.length && (
                             <div className="nation-list-empty">

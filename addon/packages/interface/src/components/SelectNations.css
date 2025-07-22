@@ -40,6 +40,23 @@
     margin-bottom: 3px;
 }
 
+.nation-list-columns {
+    display: flex;
+    gap: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #222;
+    margin-bottom: 3px;
+}
+
+.nation-list-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .nation-list-empty {
     margin: 6px;
     color: orange;
