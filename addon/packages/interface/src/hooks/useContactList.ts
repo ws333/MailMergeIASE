@@ -4,7 +4,6 @@ import { threeMonths } from "../constants/timeConstants";
 import { fetchAndMergeContacts, fetchOnlineNations } from "../helpers/fetchAndMergeContacts";
 import { getCountryCodeByIP } from "../helpers/getCountryCodeByIP";
 import { getCountryCode, getDeletedContacts } from "../helpers/indexedDB";
-import { isExtension } from "../helpers/isExtension";
 import { isOnline } from "../helpers/isOnline";
 import { useStoreActions, useStoreState } from "../store/store";
 
@@ -66,8 +65,6 @@ function useContactList() {
     });
 
     useEffect(() => {
-        if (!isExtension()) setIsSelectedAllNations(true);
-
         setNationOptionsFetched(_nationOptions);
         setContacts(_contacts);
         setDeletedContacts(_deletedContacts);
