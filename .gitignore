@@ -2,7 +2,7 @@ node_modules
 dist
 TODO.md
 addon_build
-iases3addon_source_code_for_upload
+sftp_deploy.sh
 
 .env
 *.local

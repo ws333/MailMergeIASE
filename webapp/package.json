@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cd frontend && pnpm run dev",
     "build": "cd frontend && pnpm run build",
+    "upload": "cd frontend && pnpm run upload",
     "check": "cd frontend && pnpm run check",
     "format": "cd frontend && pnpm run format",
     "format:check": "cd frontend && pnpm run format:check",
