@@ -62,15 +62,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.header-title {
-  margin: 4rem 0 0.625rem; /* 10px to rem */
-}
-
-.logout-button {
-  font-size: initial;
-  margin-left: 1rem;
-}
-
 section {
   margin-top: 1.25rem;
 }

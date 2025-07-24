@@ -40,4 +40,12 @@ body * {
     flex-direction: row;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     margin: 0px 22px 0px 14px;
+    position: relative;
+}
+
+.header-section-align-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 1rem;
 }

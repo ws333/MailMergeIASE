@@ -1,6 +1,5 @@
 .icon_ifo {
-    width: 70px;
-    height: 70px;
+    margin: 0; /* Too avoid linting error for empty css class, and icon_ifo is needed for hover to work */
 }
 
 /* Glow effect on hover */

@@ -1,19 +1,17 @@
-import { useMsal } from '@azure/msal-react';
 import { Email, ProjectEnvProps } from '../../../../addon/packages/interface/src/types/types';
 import { sendEmailGoogle } from '../helpers/sendEmailGoogle';
 import { sendEmailMS } from '../helpers/sendEmailMS';
 import { loginRequest } from '../auth/authConfigMS';
 import { useStoreState } from '../store/storeWithHooks';
+import { useCheckAndSetCurrentLoginMS } from './useCheckAndSetCurrentLoginMS';
 import { useHandleGoogleAuthCode } from './useHandleGoogleAuthCode';
-import { useSetCurrentLoginMS } from './useSetCurrentLoginMS';
 
 export function useCurrentLogin() {
-  useSetCurrentLoginMS();
+  const { accountsMS, inProgressMS, instanceMS } = useCheckAndSetCurrentLoginMS();
   useHandleGoogleAuthCode();
 
   const currentLogin = useStoreState((state) => state.auth.currentLogin);
 
-  const { instance, accounts } = useMsal();
   const { scopes } = loginRequest;
   const { provider, userEmail } = currentLogin;
 
@@ -29,8 +27,8 @@ export function useCurrentLogin() {
 
   if (provider === 'MS') {
     sendEmailFn = async (email: Email) =>
-      await sendEmailMS({ email: { ...email, from: userEmail }, instance, accounts, scopes });
+      await sendEmailMS({ email: { ...email, from: userEmail }, instance: instanceMS, accounts: accountsMS, scopes });
   }
 
-  return { accounts, userEmail, provider, sendEmailFn };
+  return { accountsMS, inProgressMS, instanceMS, userEmail, provider, sendEmailFn };
 }

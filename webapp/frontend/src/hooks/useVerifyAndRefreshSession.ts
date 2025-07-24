@@ -1,4 +1,3 @@
-import { useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginGoogleInProgress } from '../types/types';
@@ -24,7 +23,6 @@ export function useVerifyAndRefreshSession({ loginGoogleInProgress }: Args) {
 
   const [verifyInProgessGoogle, setVerifyInProgressGoogle] = useState(false);
 
-  const { inProgress: inProgressMS, accounts: accountsMS } = useMsal();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -124,5 +122,5 @@ export function useVerifyAndRefreshSession({ loginGoogleInProgress }: Args) {
     navigate,
   ]);
 
-  return { accountsMS, inProgressMS, verifyInProgessGoogle, lastClickedLogin };
+  return { verifyInProgessGoogle, lastClickedLogin };
 }

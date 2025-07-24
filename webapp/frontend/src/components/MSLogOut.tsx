@@ -1,10 +1,14 @@
-import { useMsal } from '@azure/msal-react';
+import { Button } from '@lib/ui/index';
+import { IPublicClientApplication } from '../types/types';
 import { POST_LOGOUT_REDIRECT_URI } from '../constants/constantsImportMeta';
 import { removeLastLoginButtonClicked } from '../helpers/localstorageHelpers';
 import { useStoreActions } from '../store/storeWithHooks';
 
-const MSLogOut = () => {
-  const { instance } = useMsal();
+type Props = {
+  instance: IPublicClientApplication;
+};
+
+const MSLogOut = ({ instance }: Props) => {
   const resetCurrentLogin = useStoreActions((state) => state.auth.resetCurrentLogin);
 
   const onClickLogout = () => {
@@ -20,11 +24,7 @@ const MSLogOut = () => {
       .catch((error: unknown) => console.error('Error logging out', error));
   };
 
-  return (
-    <button className="logout-button" onClick={onClickLogout}>
-      Logout
-    </button>
-  );
+  return <Button onClick={onClickLogout}>Logout</Button>;
 };
 
 export default MSLogOut;

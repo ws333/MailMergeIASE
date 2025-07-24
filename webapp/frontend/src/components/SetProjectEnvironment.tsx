@@ -4,26 +4,30 @@ import { PATH_PROTECTED } from '../constants/constants';
 import App from '../../../../addon/packages/interface/src/components/App';
 import { useCurrentLogin } from '../hooks/useCurrentLogin';
 import { pingBackend } from '../helpers/pingBackend';
-import GoogleLoggedInAs from './GoogleLoggedInAs';
+import GoogleHeaderButtons from './GoogleHeaderButtons';
 import LogIn from './LogIn';
-import MSLoggedInAs from './MSLoggedInAs';
+import MSHeaderButtons from './MSHeaderButtons';
 import Page404 from './Page404';
 import ProtectedRoute from './ProtectedRoute';
 
 function SetProjectEnvironment() {
   const environment: ProjectEnvironment = 'webapp';
 
-  const { accounts, userEmail, provider, sendEmailFn } = useCurrentLogin();
+  const { accountsMS, inProgressMS, instanceMS, userEmail, provider, sendEmailFn } = useCurrentLogin();
 
   const sendEmailPreflightFn = pingBackend;
 
-  const InfoComponent =
-    provider === 'MS' ? <MSLoggedInAs accounts={accounts} /> : <GoogleLoggedInAs userEmail={userEmail} />;
+  const HeaderButtonsComponent =
+    provider === 'MS' ? (
+      <MSHeaderButtons accounts={accountsMS} instance={instanceMS} />
+    ) : (
+      <GoogleHeaderButtons userEmail={userEmail} />
+    );
 
   return (
     <Routes>
-      <Route path="/" element={<LogIn />} />
-      <Route element={<ProtectedRoute />}>
+      <Route path="/" element={<LogIn accountsMS={accountsMS} instanceMS={instanceMS} />} />
+      <Route element={<ProtectedRoute accountsMS={accountsMS} inProgressMS={inProgressMS} />}>
         <Route
           path={PATH_PROTECTED}
           element={
@@ -31,7 +35,7 @@ function SetProjectEnvironment() {
               environment={environment}
               sendEmailFn={sendEmailFn}
               sendEmailPreflightFn={sendEmailPreflightFn}
-              InfoComponent={InfoComponent}
+              HeaderButtonsComponent={HeaderButtonsComponent}
             />
           }
         />

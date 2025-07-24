@@ -20,7 +20,7 @@ export type ProjectEnvProps = {
     environment: ProjectEnvironment;
     sendEmailFn: (email: Email) => Promise<StatusBackend> | Promise<void>;
     sendEmailPreflightFn?: () => Promise<StatusBackend>;
-    InfoComponent?: React.ReactElement;
+    HeaderButtonsComponent?: React.ReactElement;
 };
 
 export type EmailComponentProps = {

@@ -98,14 +98,6 @@ p {
     border-radius: 13px;
 }
 
-.header-title {
-    margin: 0 2rem;
-}
-
-.no-wrap {
-    white-space: nowrap;
-}
-
 .progress_bar {
     width: 100%;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import type { Email, MessagePayload, ProjectEnvProps } from "../types/types";
 import type { ContactI3C, LogMessageOptions } from "../types/typesI3C";
 import {
@@ -34,7 +34,7 @@ import "./EmailSender.css";
 /**
  * - The EmailSender component is universal and used by both addon and webapp
  */
-function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoComponent }: ProjectEnvProps) {
+function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn }: ProjectEnvProps) {
     if (environment === "unknown") throw new Error(ERROR_ENVIRONMENT_UNKNOWN);
     const [message, setMessage] = useState<string>(zeroWidtSpace); // zeroWidtSpace used to keep styling consistent
     const [errorMessage, setErrorMessage] = useState<string>();
@@ -257,8 +257,8 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoCompo
 
     return (
         <div className="container_email_sender">
+            <div style={divHeaderTopGap}></div>
             <Header />
-            {InfoComponent}
             <br />
 
             {userDialog.isOpen && (
@@ -333,3 +333,7 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn, InfoCompo
 }
 
 export default EmailSender;
+
+const divHeaderTopGap: CSSProperties = {
+    height: "2rem",
+};
