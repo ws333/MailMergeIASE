@@ -27,7 +27,7 @@
         "downloads",
         "https://iase.one/",
         "https://ipinfo.io/",
-        "http://ip-api.com/"
+        "https://ipapi.co/"
     ],
     "browser_action": {
         "default_title": "__MSG_extensionName__",
