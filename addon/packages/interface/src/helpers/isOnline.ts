@@ -21,7 +21,7 @@ export async function isOnline() {
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        console.log(`${url1} is not reachable!`);
+        console.warn(`${url1} is not reachable!`);
 
         try {
             await fetchWithTimeout({
@@ -31,7 +31,7 @@ export async function isOnline() {
             });
             _isOnline = true;
         } catch (error) {
-            console.log(`${url2} is also not reachable!`);
+            console.warn(`${url1} is still not reachable!`);
             console.debug(error);
             throw error;
         }

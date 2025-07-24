@@ -60,7 +60,7 @@ export async function importToLocalStorage(file: File): Promise<ImportStats | Er
             continue;
         }
 
-        console.warn("importToLocalStorage -> entry in zip file not handled:", fileName);
+        console.warn("Error during import: entry in zip file not handled:", fileName);
     }
 
     await zipReader.close();
@@ -77,7 +77,7 @@ export async function importToLocalStorage(file: File): Promise<ImportStats | Er
     await storeActiveContacts(newContactState.active);
     await storeDeletedContacts(newContactState.deleted);
     const lastImpExpDate = importData.metadata.find((item) => item.key === "exportDate")?.value || -1;
-    if (lastImpExpDate === -1) console.warn("importToLocalStorage -> exportDate not found in importData.metadata");
+    if (lastImpExpDate === -1) console.warn("Error during import: exportDate not found in importData.metadata");
     await storeMetadataKey(lastImpExpDate, METADATA_KEY.LAST_IMPORT_EXPORT_DATE);
 
     return { ...importContactsStats, logsProcessed };
@@ -93,6 +93,6 @@ async function mergeSendingLogs(importedData: string) {
 
         return importedLogs.length;
     } catch (error) {
-        console.error("importToLocalStorage -> failed to merge sending logs:", error);
+        console.warn("Error during import: failed to merge sending logs:", error);
     }
 }

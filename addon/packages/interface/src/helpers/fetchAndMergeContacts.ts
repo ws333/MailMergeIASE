@@ -31,7 +31,7 @@ export async function fetchOnlineNations(): Promise<string[]> {
         if (!countrycodes.length) throw new Error(ERROR_EMPTY_COUNTRY_CODES_ARRAY);
         return countrycodes;
     } catch (error) {
-        console.warn("fetchOnlineNations:", error);
+        console.warn("Error in fetchOnlineNations:", error);
         throw error;
     }
 }
@@ -42,7 +42,7 @@ async function fetchOnlineContacts(): Promise<ContactI3C[]> {
         const csvText = await response.text();
         return csvParse<ContactI3C>(csvText).data;
     } catch (error) {
-        console.warn("fetchOnlineContacts:", error);
+        console.warn("Error in fetchOnlineContacts:", error);
         throw error;
     }
 }

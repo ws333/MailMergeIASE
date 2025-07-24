@@ -48,7 +48,7 @@ export async function initializeStorage(contacts: ContactI3C[]): Promise<void> {
             console.log("Initial sendingLog stored successfully");
         }
     } catch (error) {
-        console.error("Failed to initialize storage:", error);
+        console.warn("Failed to initialize storage:", error);
     }
 }
 
@@ -99,7 +99,7 @@ export async function storeActiveContactsBatch(contacts: ContactI3C[]): Promise<
             )
         );
     } catch (error) {
-        console.error("Error storing active contacts batch:", error);
+        console.warn("Error storing active contacts:", error);
     } finally {
         db.close();
     }
@@ -123,7 +123,7 @@ export async function removeActiveContactByUid(uid: number): Promise<void> {
             request.onerror = () => reject(new Error(`Failed to remove contact with uid ${uid}`));
         });
     } catch (error) {
-        console.error(`Error removing contact with uid ${uid}:`, error);
+        console.warn(`Error removing contact with uid ${uid}:`, error);
     } finally {
         db.close();
     }
@@ -148,7 +148,7 @@ export async function storeDeletedContacts(contacts: ContactI3C | ContactI3C[]):
             )
         );
     } catch (error) {
-        console.error("Error storing deleted contacts:", error);
+        console.warn("Error storing deleted contacts:", error);
     } finally {
         db.close();
     }
@@ -173,7 +173,7 @@ export async function storeSendingLog(entries: SendingLogEntry | SendingLogEntry
             )
         );
     } catch (error) {
-        console.error("Error storing sending log:", error);
+        console.warn("Error storing sending log:", error);
     } finally {
         db.close();
     }
@@ -190,7 +190,7 @@ export async function storeMetadataKey(timestamp: number, key: MetadataKey): Pro
             request.onerror = () => reject(new Error(`Failed to store key: ${key}`));
         });
     } catch (error) {
-        console.error(`Error storing key: ${key}`, error);
+        console.warn(`Error storing key ${key}:`, error);
     } finally {
         db.close();
     }
@@ -211,7 +211,7 @@ export async function storeOptionsKey(
             request.onerror = () => reject(new Error(`Failed to store key: ${key}`));
         });
     } catch (error) {
-        console.error(`Error storing key: ${key}`, error);
+        console.warn(`Error storing key ${key}:`, error);
     } finally {
         db.close();
     }
@@ -228,7 +228,7 @@ export async function getActiveContacts(): Promise<ContactI3C[]> {
             request.onerror = () => reject(new Error("Failed to retrieve active contacts"));
         });
     } catch (error) {
-        console.error("Error retrieving active contacts:", error);
+        console.warn("Error retrieving active contacts:", error);
         return [];
     } finally {
         db.close();
@@ -246,7 +246,7 @@ export async function getDeletedContacts(): Promise<ContactI3C[]> {
             request.onerror = () => reject(new Error("Failed to retrieve deleted contacts"));
         });
     } catch (error) {
-        console.error("Error retrieving deleted contacts:", error);
+        console.warn("Error retrieving deleted contacts:", error);
         return [];
     } finally {
         db.close();
@@ -264,7 +264,7 @@ export async function getSendingLog(): Promise<SendingLogEntry[]> {
             request.onerror = () => reject(new Error("Failed to retrieve sending log"));
         });
     } catch (error) {
-        console.error("Error retrieving sending log:", error);
+        console.warn("Error retrieving sending log:", error);
         return [];
     } finally {
         db.close();
@@ -293,7 +293,7 @@ export async function getMetadata(): Promise<{ key: string; value: number }[]> {
 
         return keys.map((key, index) => ({ key, value: values[index] }));
     } catch (error) {
-        console.error("Error retrieving metadata:", error);
+        console.warn("Error retrieving metadata:", error);
         return [];
     } finally {
         db.close();
@@ -322,7 +322,7 @@ export async function getOptions(): Promise<{ key: string; value: number | strin
 
         return keys.map((key, index) => ({ key, value: values[index] }));
     } catch (error) {
-        console.error("Error retrieving options:", error);
+        console.warn("Error retrieving options:", error);
         return [];
     } finally {
         db.close();
@@ -341,7 +341,7 @@ export async function getCountryCode(): Promise<string> {
             request.onerror = () => reject(new Error("Failed to retrieve country code"));
         });
     } catch (error) {
-        console.error(error);
+        console.warn("Error retrieving country code:", error);
         return "";
     } finally {
         db.close();
@@ -360,7 +360,7 @@ export async function getCountryCodesFetched(): Promise<string[]> {
             request.onerror = () => reject(new Error("Failed to retrieve stored country codes"));
         });
     } catch (error) {
-        console.error(error);
+        console.warn("Error retrieving country codes:", error);
         return [];
     } finally {
         db.close();
@@ -378,7 +378,7 @@ export async function getLastImportExportDate(): Promise<number> {
             request.onerror = () => reject(new Error("Failed to retrieve last import export date"));
         });
     } catch (error) {
-        console.error(error);
+        console.warn("Error retrieving last import export date:", error);
         return -1;
     } finally {
         db.close();
@@ -429,7 +429,7 @@ export async function removeStorageItem(
             request.onerror = () => reject(new Error(`Failed to remove ${key} from ${storeName}`));
         });
     } catch (error) {
-        console.error(`Error removing ${key}:`, error);
+        console.warn(`Error removing key ${key}:`, error);
     } finally {
         db.close();
     }
@@ -459,7 +459,7 @@ export async function resetStorage(): Promise<boolean> {
         );
         return true;
     } catch (error) {
-        console.error("Error resetting IndexedDB:", error);
+        console.warn("Error resetting IndexedDB:", error);
         return false;
     } finally {
         db.close();
@@ -485,7 +485,7 @@ export async function deleteDatabase(): Promise<void> {
 
             deleteRequest.onerror = (event) => {
                 const error = `Error deleting database: ${(event.target as IDBOpenDBRequest).error}`;
-                console.error(error);
+                console.warn(error);
                 reject(new Error(error));
             };
 
@@ -498,7 +498,7 @@ export async function deleteDatabase(): Promise<void> {
 
         closeRequest.onerror = (event) => {
             const error = `Error closing database connections: ${(event.target as IDBOpenDBRequest).error}`;
-            console.error(error);
+            console.warn(error);
             reject(new Error(error));
         };
     });

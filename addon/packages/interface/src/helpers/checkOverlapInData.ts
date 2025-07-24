@@ -1,5 +1,5 @@
 import { ERROR_OVERLAP_ACTIVE_DELETED } from "../constants/constants";
-import { getDevMode } from "./getSetDevMode";
+import { isDevMode } from "./getSetDevMode";
 import { getActiveContacts, getDeletedContacts } from "./indexedDB";
 
 export async function checkOverlapIndexedDBActiveAndDeletedContacts() {
@@ -10,7 +10,7 @@ export async function checkOverlapIndexedDBActiveAndDeletedContacts() {
     const intersectionActiveDeleted = new Set([...activeContactUids].filter((uid) => deletedContactUids.has(uid)));
     const isOverlap = intersectionActiveDeleted.size > 0;
     if (isOverlap) {
-        if (getDevMode() === "enabled") {
+        if (isDevMode()) {
             console.log(ERROR_OVERLAP_ACTIVE_DELETED); // This is for output when running tests
         } else {
             console.warn(ERROR_OVERLAP_ACTIVE_DELETED);

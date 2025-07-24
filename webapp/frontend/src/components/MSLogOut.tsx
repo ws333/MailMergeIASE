@@ -21,7 +21,7 @@ const MSLogOut = ({ instance }: Props) => {
         removeLastLoginButtonClicked();
         resetCurrentLogin();
       })
-      .catch((error: unknown) => console.error('Error logging out', error));
+      .catch((error: unknown) => console.warn('Error logging out:', error));
   };
 
   return <Button onClick={onClickLogout}>Logout</Button>;

@@ -80,7 +80,7 @@ const MenuOptionImport = ({ view, onClose }: Props) => {
         toast.dismiss();
     };
 
-    const handleImport = async (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeImport = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
@@ -107,7 +107,7 @@ const MenuOptionImport = ({ view, onClose }: Props) => {
                 data: importStatsOrError,
             });
         } catch (error) {
-            console.error(error);
+            console.warn("Error in onChangeImport:", error);
         } finally {
             if (fileInputRef.current) {
                 fileInputRef.current.value = "";
@@ -123,7 +123,7 @@ const MenuOptionImport = ({ view, onClose }: Props) => {
 
     return (
         <div>
-            <input type="file" ref={fileInputRef} accept=".zip" onChange={handleImport} style={{ display: "none" }} />
+            <input type="file" ref={fileInputRef} accept=".zip" onChange={onChangeImport} style={{ display: "none" }} />
             <div>
                 <MenuOption
                     view={view}

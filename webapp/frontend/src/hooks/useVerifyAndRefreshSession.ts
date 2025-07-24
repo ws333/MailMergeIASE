@@ -77,7 +77,7 @@ export function useVerifyAndRefreshSession({ loginGoogleInProgress }: Args) {
           console.warn(`${failedPrefix} error: ${error}`);
         }
       } catch (catchError) {
-        console.error(`${failedPrefix} ${catchError}`);
+        console.warn(`${failedPrefix} ${catchError}`);
       } finally {
         setVerifyInProgressGoogle(false);
         removeLoginGoogleInProgress(); // Remove any loginGoogleInProgress key left in localStorage when verification completes

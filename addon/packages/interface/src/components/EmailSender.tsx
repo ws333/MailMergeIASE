@@ -11,6 +11,7 @@ import { useContactList } from "../hooks/useContactList";
 import { useEmailOptions } from "../hooks/useEmailOptions";
 import { useUpdateSendingStats } from "../hooks/useUpdateSendingStats";
 import { getSessionFinishedText } from "../helpers/getSessionFinishedText";
+import { isDevMode } from "../helpers/getSetDevMode";
 import { storeActiveContacts } from "../helpers/indexedDB";
 import { renderEmail } from "../helpers/renderEmail";
 import { getLogsToDisplay, logSendingMessage } from "../helpers/sendingLog";
@@ -71,7 +72,8 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn }: Project
     };
 
     useEffect(() => {
-        console.log(`Updating sendingLog after reset on render #${forcedRender}`);
+        if (isDevMode()) console.log(`Updating sendingLog after reset on render #${forcedRender}`);
+
         async function readLog() {
             await checkForDangelingSession();
             const logsToDisplay = await getLogsToDisplay();
@@ -210,7 +212,7 @@ function EmailSender({ environment, sendEmailFn, sendEmailPreflightFn }: Project
 
                 await waitRandomSeconds(_delay, randomWindow, { signal: controller.current.signal });
             } catch (error) {
-                console.warn("*Debug* -> EmailSender.tsx -> handleSendEmails -> error:", error);
+                console.warn("Error in onClickSendEmail:", error);
                 logMessage(`Failed to send email to ${logContact}`);
             }
         }
