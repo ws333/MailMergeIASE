@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginGoogleInProgress } from '../types/types';
 import { RefreshSessionGoogleResponseBody, VerifySessionGoogleResponseBody } from '../types/typesBackend';
-import { PATH_REDIRECT } from '../constants/constants';
+import { PATH_PROTECTED } from '../constants/constants';
 import { PATH_REFRESH_SESSION_GOOGLE, PATH_VERIFY_SESSION_GOOGLE } from '../constants/constantsEndpointPaths';
 import { URL_BACKEND } from '../constants/constantsImportMeta';
 import {
@@ -91,7 +91,7 @@ export function useVerifyAndRefreshSession({ loginGoogleInProgress }: Args) {
       // authenticated when navigating to protected page. This prevents a brief display of the LogIn page.
       if (loginGoogleInProgress === 'true' && !hasGoogleOAuthParams) {
         setLoginGoogleInProgress('cleanedup');
-        void navigate(`/${PATH_REDIRECT}`, { replace: true });
+        void navigate(`/${PATH_PROTECTED}`, { replace: true });
         return;
       }
 
