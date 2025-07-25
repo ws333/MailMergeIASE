@@ -32,20 +32,24 @@ body * {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 14px;
     width: 100%;
 }
 
 .header {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    margin: 0px 22px 0px 14px;
-    position: relative;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    /* Gradient background: solid at top, fades to transparent at bottom */
+    background: linear-gradient(to bottom, #141414c0 70%, #14141400 100%);
 }
 
 .header-section-align-right {
     display: flex;
     align-items: center;
     margin-left: auto;
+    margin-right: 14px;
     gap: 1rem;
 }
