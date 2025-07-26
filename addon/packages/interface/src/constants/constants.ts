@@ -1,6 +1,8 @@
 export const __DEV__ = import.meta.env.DEV;
 
-export const DOCS_URL = "https://iase.one";
+export const DOCS_URL_WEBAPP = "https://iase.one/webapp/docs";
+export const DOCS_URL_ADDON =
+    "https://iase.notion.site/Guide-for-installing-and-using-the-IASES3-Thunderbird-add-on-1d5e0b97674d806e8448d1a75d3310ff";
 export const IASE_URL = "https://www.bashar.org/socialexperiment";
 export const IPINFO_URL = "https://ipinfo.io/ip";
 export const NATIONS_CSV_URL = "https://iase.one/contact_lists/nations.csv";

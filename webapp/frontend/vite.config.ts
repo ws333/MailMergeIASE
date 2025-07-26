@@ -1,14 +1,14 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
-import { PATH_BASE, PORT_DEV } from './src/constants/constants';
+import { PATH_BASE, PORT_DEV_WEBAPP } from './src/constants/constants';
 
 // https://vite.dev/config/
 export default defineConfig({
   base: PATH_BASE,
   plugins: [react()],
   server: {
-    port: PORT_DEV,
+    port: PORT_DEV_WEBAPP,
     fs: {
       allow: [path.resolve(__dirname)],
     },

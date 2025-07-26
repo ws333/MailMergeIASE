@@ -1,0 +1,103 @@
+/* Prevent white flash on overscroll by setting background everywhere */
+:root,
+html,
+body {
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  background-color: #232526;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+html {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  background-attachment: fixed;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: transparent;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Centered card style for landing and docs pages */
+.docs-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  padding: 2.5rem 2rem;
+  color: #fff;
+}
+
+.docs-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Only apply flex to landing page list */
+.docs-container > ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Reset Markdown list styles */
+.docs-markdown ul,
+.docs-markdown ol {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 2em;
+  margin: 1em 0 1em 0;
+}
+
+.docs-markdown ul ul,
+.docs-markdown ul p,
+.docs-markdown ol ol {
+  list-style-type: circle;
+  margin: 0.2em 0 0.2em 0em;
+}
+
+.docs-markdown li {
+  margin: 0.2em 0;
+}
+
+.docs-container li {
+  font-size: 1.1rem;
+}
+
+.docs-container a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.docs-container a:hover {
+  color: #21a1f3;
+}
+
+.docs-markdown {
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .docs-container {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
+  }
+  .docs-container h1 {
+    font-size: 1.5rem;
+  }
+}

@@ -14,6 +14,6 @@
     "noEmit": true,
     "types": ["vite/client"]
   },
-  "include": ["frontend/src", "frontend/vite.config.ts"],
+  "include": ["frontend/src", "frontend/vite.config.ts", "docs/src", "docs/vite.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

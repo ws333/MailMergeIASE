@@ -20,7 +20,7 @@ export default function App({
                     <IconIFO isHovering={false} />
                     <div className="header-section-align-right">
                         {HeaderButtonsComponent}
-                        <SettingsMenu />
+                        <SettingsMenu environment={environment} />
                     </div>
                 </div>
             </header>

@@ -1,8 +1,9 @@
 export const URL_BACKEND_DEV = 'http://localhost:5000';
 export const URL_BACKEND_PROD = 'https://backend.iase.one';
 
-export const PORT_DEV = 5174;
-export const SERVER_DEV = `http://localhost:${PORT_DEV.toString()}`;
+export const PORT_DEV_WEBAPP = 5174;
+export const PORT_DEV_DOCS = 5175;
+export const SERVER_DEV = `http://localhost:${PORT_DEV_WEBAPP.toString()}`;
 export const SERVER_PROD = 'https://iase.one';
 
 export const PATH_BASE = '/webapp';

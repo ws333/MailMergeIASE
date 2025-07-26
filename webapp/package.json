@@ -1,17 +1,17 @@
 {
-  "name": "iases3",
+  "name": "webapp",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "cd frontend && pnpm run dev",
-    "build": "cd frontend && pnpm run build",
-    "upload": "cd frontend && pnpm run upload",
-    "check": "cd frontend && pnpm run check",
+    "build": "pnpm --filter webapp-frontend --filter webapp-docs run build",
+    "upload": "pnpm --filter webapp-docs run build && cd frontend && pnpm run upload",
+    "check": "pnpm --filter webapp-frontend --filter webapp-docs run check",
     "format": "cd frontend && pnpm run format",
     "format:check": "cd frontend && pnpm run format:check",
-    "lint": "cd frontend && pnpm run lint",
-    "ca": "cd frontend && pnpm run check && pnpm run lint && pnpm run format:check"
+    "lint": "pnpm --filter webapp-frontend --filter webapp-docs run lint",
+    "ca": "pnpm --filter webapp-frontend --filter webapp-docs run ca"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

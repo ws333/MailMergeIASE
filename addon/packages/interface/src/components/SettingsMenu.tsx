@@ -3,7 +3,8 @@ import { TrashBinIcon } from "ui-kit";
 import { InfoIcon } from "ui-kit";
 import { DownloadIcon } from "ui-kit";
 import { Menu, MenuOption, MenuOptionProps, OpenMenuButton } from "ui-kit";
-import { DOCS_URL } from "../constants/constants";
+import { ProjectEnvProps } from "../types/types";
+import { DOCS_URL_ADDON, DOCS_URL_WEBAPP } from "../constants/constants";
 import { exportFromLocalStorage } from "../helpers/exportFromLocalStorage";
 import { showDeleteHistoryDialog } from "../helpers/showDeleteHistoryDialog";
 import { useStoreActions, useStoreState } from "../store/store";
@@ -16,13 +17,17 @@ const StyledTitle = styled.span`
     color: ${({ theme }) => theme.colors.text.toCssValue()};
 `;
 
-function SettingsMenu() {
+type Props = Pick<ProjectEnvProps, "environment">;
+
+function SettingsMenu({ environment }: Props) {
     const emailsSent = useStoreState((state) => state.contactList.emailsSent);
     const setUserDialog = useStoreActions((actions) => actions.userDialog.setUserDialog);
     const initiateForcedRender = useStoreActions((actions) => actions.render.initiateForcedRender);
 
     const importSendingHistory = "Import sending history";
     const viewFullSendingLog = "View full sending log";
+
+    const DOCS_URL = environment === "webapp" ? DOCS_URL_WEBAPP : DOCS_URL_ADDON;
 
     return (
         <Menu
